@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/bmorton/go-azure/azure"
 	"github.com/bmorton/go-azure/table"
@@ -16,8 +17,8 @@ type Message struct {
 
 func main() {
 	c := table.New(azure.StorageCredentials{
-		AccountName: "my-storage-account",
-		AccessKey:   "my-access-key",
+		AccountName: os.Getenv("AZURE_STORAGE_ACCOUNT_NAME"),
+		AccessKey:   os.Getenv("AZURE_STORAGE_ACCESS_KEY"),
 	})
 	c.Debug = true
 
